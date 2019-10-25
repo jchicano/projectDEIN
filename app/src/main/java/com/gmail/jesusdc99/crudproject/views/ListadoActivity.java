@@ -27,7 +27,6 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         setSupportActionBar(toolbar);
 
         presenter = new ListadoPresenter(this);
-
         FloatingActionButton fab = findViewById(R.id.listadoFB);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

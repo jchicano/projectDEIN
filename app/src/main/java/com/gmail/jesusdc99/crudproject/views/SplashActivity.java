@@ -20,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+                Log.d(TAG, "Lanzando Splash Screen...");
                 //No se debe hacer asi, sacarlo fuera del handler
                 startActivity(intent);
                 finish();
