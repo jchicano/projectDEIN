@@ -9,7 +9,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/database"/>
+            android:src="@drawable/database_logo"/>
     </item>
 
 </layer-list>

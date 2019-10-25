@@ -5,9 +5,9 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@drawable/d_pad"
+        android:icon="@drawable/database"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/d_pad"
+        android:roundIcon="@drawable/database"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
