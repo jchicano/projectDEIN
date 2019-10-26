@@ -23,7 +23,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbarListado);
         setSupportActionBar(toolbar);
 
         presenter = new ListadoPresenter(this);
