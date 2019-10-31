@@ -24,13 +24,21 @@
             android:orientation="vertical"
             android:gravity="center" >
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="194dp"
+                android:layout_height="201dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/caratula_gtav_ps4" />
+
             <Button
                 android:id="@+id/subirImagenButton"
                 android:layout_width="158dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:drawableLeft="@drawable/id_subir_18dp"
+                android:drawableLeft="@drawable/ic_subir_18dp"
                 android:drawablePadding="5dp"
                 android:gravity="center"
                 android:text="Subir imagen" />
@@ -55,7 +63,7 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:hint="Desarrollador"
-                android:drawableLeft="@drawable/id_desarrollador_18dp"
+                android:drawableLeft="@drawable/ic_desarrollador_18dp"
                 android:drawablePadding="5dp"
                 android:inputType="textPersonName" />
 
@@ -67,7 +75,7 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:hint="Distribuidor"
-                android:drawableLeft="@drawable/id_distribuidor_18dp"
+                android:drawableLeft="@drawable/ic_distribuidor_18dp"
                 android:drawablePadding="5dp"
                 android:inputType="textPersonName" />
 
@@ -79,7 +87,7 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:hint="Nota"
-                android:drawableLeft="@drawable/id_fecha_18dp"
+                android:drawableLeft="@drawable/ic_fecha_18dp"
                 android:drawablePadding="5dp"
                 android:inputType="number" />
 
@@ -98,6 +106,8 @@
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="10dp"
                     android:text="Plataforma"
+                    android:drawableLeft="@drawable/ic_plataforma_18dp"
+                    android:drawablePadding="5dp"
                     android:textSize="18sp" />
 
                 <Spinner
@@ -124,17 +134,19 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:hint="Fecha de lanzamiento"
-                android:drawableLeft="@drawable/id_fecha_18dp"
+                android:drawableLeft="@drawable/ic_fecha_18dp"
                 android:drawablePadding="5dp"
                 android:inputType="date"
                 android:textColor="@color/error" />
 
             <Switch
                 android:id="@+id/nuevoSwitch"
-                android:layout_width="125dp"
+                android:layout_width="142dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="50dp"
+                android:drawableLeft="@drawable/ic_nuevo_18dp"
+                android:drawablePadding="5dp"
                 android:text="Nuevo"
                 android:textSize="18sp" />
 

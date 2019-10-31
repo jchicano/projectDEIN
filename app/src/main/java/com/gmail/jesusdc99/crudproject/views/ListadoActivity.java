@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
@@ -26,7 +27,13 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         Toolbar toolbar = findViewById(R.id.toolbarListado);
         setSupportActionBar(toolbar);
 
+        // Flecha atras
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Cargamos el presentador
         presenter = new ListadoPresenter(this);
+
+        // Logica del boton flotante
         FloatingActionButton fab = findViewById(R.id.listadoFB);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,10 +47,22 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     @Override
     public void launchForm() {
         Log.d(TAG, "Lanzando formulario...");
-        Intent intent = new Intent(ListadoActivity.this, FormularioActivity.class); //Comunicamos las 2 actividades
+        Intent intent = new Intent(ListadoActivity.this, FormularioActivity.class); // Comunicamos las 2 actividades
         startActivity(intent);
     }
 
+    // Elegimos que hacer segun que boton del toolbar se ha pulsado
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Se modificara mas alante con el menu
+            /*case android.R.id.home:
+                Log.d(TAG, "Pulsando boton atras...");
+                return true;*/
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     /*******************************************/
     @Override
