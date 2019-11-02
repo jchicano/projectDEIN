@@ -9,20 +9,17 @@
     tools:showIn="@layout/activity_formulario">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center" >
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -42,17 +39,33 @@
                 android:drawablePadding="5dp"
                 android:gravity="center"
                 android:text="Subir imagen" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="364dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/tituloEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:hint="Título"
                 android:drawableLeft="@drawable/ic_titulo_18dp"
                 android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Título"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -61,10 +74,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:hint="Desarrollador"
                 android:drawableLeft="@drawable/ic_desarrollador_18dp"
                 android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Desarrollador"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -73,10 +86,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:hint="Distribuidor"
                 android:drawableLeft="@drawable/ic_distribuidor_18dp"
                 android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Distribuidor"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -85,10 +98,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:hint="Nota"
                 android:drawableLeft="@drawable/ic_fecha_18dp"
                 android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Nota"
                 android:inputType="number" />
 
             <LinearLayout
@@ -105,9 +118,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Plataforma"
                     android:drawableLeft="@drawable/ic_plataforma_18dp"
                     android:drawablePadding="5dp"
+                    android:text="Plataforma"
                     android:textSize="18sp" />
 
                 <Spinner
