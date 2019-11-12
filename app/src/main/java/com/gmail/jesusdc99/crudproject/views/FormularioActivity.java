@@ -1,6 +1,5 @@
 package com.gmail.jesusdc99.crudproject.views;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.gmail.jesusdc99.crudproject.R;
@@ -48,7 +47,7 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.formulario_activity_actions, menu);
+        inflater.inflate(R.menu.menu_formulario, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

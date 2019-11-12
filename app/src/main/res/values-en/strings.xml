@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">crudproject</string>
+    <string name="title_activity_listado">List</string>
+    <string name="title_activity_formulario">Form</string>
+    <string name="action_opciones">Settings</string>
+    <string name="action_delete_validation">Are you sure you want to delete?</string>
+    <string name="action_sobre_app">About AppCRUD</string>
+    <string name="action_ordenar">Order</string>
+    <string name="action_buscar">Search</string>
+</resources>

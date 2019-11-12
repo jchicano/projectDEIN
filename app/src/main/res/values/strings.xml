@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">crudproject</string>
-    <string name="action_settings">Opciones</string>
+    <string name="app_name" translatable="false">crudproject</string>
+    <string name="action_opciones">Opciones</string>
     <string name="title_activity_listado">Listado</string>
     <string name="title_activity_formulario">Formulario</string>
+    <string name="action_delete_validation">¿Seguro que deseas eliminarlo?</string>
+    <string name="action_buscar">Buscar</string>
+    <string name="action_ordenar">Ordenar</string>
+    <string name="action_sobre_app">Sobre AppCRUD</string>
 
     <!-- Lista de elementos del spinner -->
     <string-array name="plataformas">
