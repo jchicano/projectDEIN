@@ -56,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_titulo_18dp"
                     android:drawablePadding="5dp"
+                    android:inputType="text"
                     android:hint="Título" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Desarrollador"
                     android:drawableLeft="@drawable/ic_desarrollador_18dp"
-                    android:drawablePadding="5dp" />
+                    android:drawablePadding="5dp"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!--<EditText
@@ -124,7 +126,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Distribuidor"
                     android:drawableLeft="@drawable/ic_distribuidor_18dp"
-                    android:drawablePadding="5dp"/>
+                    android:drawablePadding="5dp"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!--<EditText
@@ -144,7 +147,7 @@
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/notaTextInputEditText"
@@ -207,7 +210,7 @@
                 android:id="@+id/fechaLanzamientoTextInputLayout"
                 android:layout_width="215dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText

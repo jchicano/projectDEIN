@@ -56,7 +56,24 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tituloTextInputLayout"
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tituloTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_titulo_18dp"
+                    android:drawablePadding="5dp"
+                    android:hint="Título"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<EditText
                 android:id="@+id/tituloEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,9 +83,26 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="Título"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName" />-->
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/desarrolladorTextInputLayout"
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/desarrolladorTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Desarrollador"
+                    android:drawableLeft="@drawable/ic_desarrollador_18dp"
+                    android:drawablePadding="5dp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<EditText
                 android:id="@+id/desarrolladorEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,9 +112,26 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="Desarrollador"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName" />-->
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/distribuidorTextInputLayout"
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/distribuidorTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Distribuidor"
+                    android:drawableLeft="@drawable/ic_distribuidor_18dp"
+                    android:drawablePadding="5dp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<EditText
                 android:id="@+id/distribuidorEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,9 +141,26 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="Distribuidor"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName" />-->
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/notaTextInputLayout"
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/notaTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nota"
+                    android:drawableLeft="@drawable/ic_fecha_18dp"
+                    android:drawablePadding="5dp"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<EditText
                 android:id="@+id/notaEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,7 +170,7 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="Nota"
-                android:inputType="number" />
+                android:inputType="number" />-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -139,7 +207,7 @@
                     android:drawableLeft="@android:drawable/ic_input_add" />
             </LinearLayout>
 
-            <EditText
+            <!--<EditText
                 android:id="@+id/fechaLanzamientoEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,7 +217,25 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="Fecha de lanzamiento"
-                android:inputType="date" />
+                android:inputType="date" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fechaLanzamientoTextInputLayout"
+                android:layout_width="215dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fechaLanzamientoTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fecha de lanzamiento"
+                    android:drawableLeft="@drawable/ic_fecha_18dp"
+                    android:drawablePadding="5dp"
+                    android:ems="10"
+                    android:inputType="date" /><!--TODO-->
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Switch
                 android:id="@+id/nuevoSwitch"
