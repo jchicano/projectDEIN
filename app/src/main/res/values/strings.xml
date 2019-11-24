@@ -1,18 +1,46 @@
 <resources>
-    <string name="app_name" translatable="false">crudproject</string>
-    <string name="action_opciones">Opciones</string>
+    <string name="app_name" translatable="false">AppCRUD</string>
+    <string name="action_configuracion">Configuración</string>
     <string name="title_activity_listado">Listado</string>
     <string name="title_activity_formulario">Formulario</string>
+    <string name="title_activity_about">Acerca de</string>
+    <string name="title_activity_buscar">Búsqueda</string>
     <string name="action_delete_validation">¿Seguro que deseas eliminarlo?</string>
     <string name="action_buscar">Buscar</string>
     <string name="action_ordenar">Ordenar</string>
     <string name="action_sobre_app">Sobre AppCRUD</string>
+    <string name="add_new_option">Añadir plataforma</string>
+    <string name="add">Añadir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="choose">Elige una opción</string>
+    <string name="your_option">Escribe el nombre</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="delete_game_title">Eliminar juego</string>
+    <string name="delete_game_content">¿Está seguro que desea eliminar el juego?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="send_feedback">Enviar comentarios</string>
+    <string name="developed_by">Desarrollado por:</string>
+    <string name="developer_name" translatable="false">Jesús David Chicano Galindo</string>
+    <string name="buscar_ahora">Buscar ahora</string>
+    <string name="seleccionar_fecha">Elegir fecha...</string>
+    <string name="barra_diez" translatable="false">/10</string>
+    <string name="image">Imagen</string>
+    <string name="upload_image">Subir imagen</string>
+    <string name="title">Título</string>
+    <string name="developer">Desarrollador</string>
+    <string name="publisher">Distribuidor</string>
+    <string name="rating">Nota</string>
+    <string name="platform">Plataforma</string>
+    <string name="release_date">Fecha de lanzamiento</string>
+    <string name="new_game">Nuevo</string>
+    <string name="search">Buscar</string>
+    <string name="action_cancelled">Acción cancelada</string>
+    <string name="item_added">Elemento añadido</string>
+    <string name="game_saved">Juego guardado</string>
+    <string name="complete_all_fields">Completa todos los campos</string>
+    <string name="game_deleted">Juego eliminado</string>
+    <string name="email_copied_clipboard">Email copiado al portapapeles</string>
 
-    <!-- Lista de elementos del spinner -->
-    <string-array name="plataformas">
-        <item>PC</item>
-        <item>PS4</item>
-        <item>Xbox One</item>
-        <item>Switch</item>
-    </string-array>
 </resources>

@@ -11,8 +11,17 @@ public class ListadoPresenter implements ListadoInterface.Presenter {
     }
 
     @Override
-    public void onClickAdd(){
+    public void onClickAdd() {
         view.launchForm();
     }
 
+    @Override
+    public void onClickSobreAppCRUD() {
+        view.launchAbout();
+    }
+
+    @Override
+    public void onClickBuscar() {
+        view.launchBuscar();
+    }
 }

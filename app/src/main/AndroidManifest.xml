@@ -11,24 +11,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".views.BuscarActivity"
+            android:label="@string/title_activity_buscar"
+            android:parentActivityName=".views.ListadoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".views.ListadoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".views.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
             android:name=".views.FormularioActivity"
             android:label="@string/title_activity_formulario"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".views.ListadoActivity" /> <!-- https://youtu.be/FcPUFp8Qrps -->
+            android:parentActivityName=".views.ListadoActivity"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- https://youtu.be/FcPUFp8Qrps -->
         <activity
             android:name=".views.ListadoActivity"
             android:label="@string/title_activity_listado"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

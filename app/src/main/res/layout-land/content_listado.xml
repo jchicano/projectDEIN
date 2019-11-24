@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_listado">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/listado_linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#cdcece"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/contadorTextView"
+            android:id="@+id/listado_contadorTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listadoRecyclerView"
+            android:id="@+id/listado_listadoRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="15"

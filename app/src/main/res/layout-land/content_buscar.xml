@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".views.BuscarActivity"
+    tools:showIn="@layout/activity_buscar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/buscar_tituloTextInputLayout"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/buscar_tituloTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_title"
+                android:drawablePadding="5dp"
+                android:hint="@string/title"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/buscar_plataformaSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/buscar_fechaLanzamientoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/seleccionar_fecha"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buscar_selectFechaButton"
+                android:layout_width="54dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@android:drawable/ic_menu_today"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buscar_buscarAhoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:drawableStart="@drawable/ic_chevron_right"
+            android:drawableEnd="@drawable/ic_chevron_left"
+            android:drawablePadding="5dp"
+            android:text="@string/buscar_ahora" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
