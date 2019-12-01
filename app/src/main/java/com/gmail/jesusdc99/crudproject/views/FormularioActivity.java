@@ -11,8 +11,13 @@ import com.gmail.jesusdc99.crudproject.utils.Utils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
@@ -34,11 +40,10 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
     private TextInputEditText tituloTextInputEditText, desarrolladorTextInputEditText, distribuidorTextInputEditText, notaTextInputEditText, fechaTextInputEditText;
     private TextInputLayout tituloTextInputLayout, desarrolladorTextInputLayout, distribuidorTextInputLayout, notaTextInputLayout, fechaTextInputLayout;
     private Button subirImagenButton, addPlataformaButton, selectFechaButton;
-
     private ArrayAdapter<String> adapter;
     private Spinner plataformaSpinner;
-
     private Context myContext;
+    private Integer idGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,13 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         // Oculto teclado
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(tituloTextInputEditText.getWindowToken(), 0);
+
+        idGame = getGameIDFromRV();
+        Log.d(TAG, "ID del juego recibido: " + idGame);
+
+        // Codigo temporal para comprobar el ID recibido
+        TextView temporalTV = findViewById(R.id.formulario_IDTemporalTextView);
+        temporalTV.setText("ID del juego: " + idGame);
     }
 
     // Para añadir el boton de guardar en el toolbar lo inflamos
@@ -239,6 +251,17 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
                 .show();
             }
         });
+    }
+
+    public int getGameIDFromRV() {
+        // Recibo parametro desde el bundle
+        // https://stackoverflow.com/a/3913720/10387022
+        // Opcion alternativa https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application
+        Bundle b = getIntent().getExtras();
+        int value = -1; // or other values
+        if(b != null)
+            value = b.getInt("id_game");
+        return value;
     }
 
     /*******************************************/

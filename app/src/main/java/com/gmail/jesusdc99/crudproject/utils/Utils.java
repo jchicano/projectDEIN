@@ -62,9 +62,10 @@ public class Utils {
     }
 
     public static boolean validateNota(CharSequence nota) {
-        int numValue = Integer.parseInt(nota.toString());
+        int numValue;
 
         try {
+            numValue = Integer.parseInt(nota.toString());
             if(nota.length() == 0 || nota.length() > 2 || numValue < 0 || numValue > 10){ // Vacio o con mas de 2 caracteres
                 return false;
             }
