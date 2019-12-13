@@ -1,8 +1,15 @@
 package com.gmail.jesusdc99.crudproject.views;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import com.gmail.jesusdc99.crudproject.R;
 import com.gmail.jesusdc99.crudproject.interfaces.FormularioInterface;
@@ -15,9 +22,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,9 +38,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class FormularioActivity extends AppCompatActivity implements FormularioInterface.View {
@@ -40,10 +55,14 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
     private TextInputEditText tituloTextInputEditText, desarrolladorTextInputEditText, distribuidorTextInputEditText, notaTextInputEditText, fechaTextInputEditText;
     private TextInputLayout tituloTextInputLayout, desarrolladorTextInputLayout, distribuidorTextInputLayout, notaTextInputLayout, fechaTextInputLayout;
     private Button subirImagenButton, addPlataformaButton, selectFechaButton;
+    private ImageView caratulaImageView;
     private ArrayAdapter<String> adapter;
     private Spinner plataformaSpinner;
     private Context myContext;
     private Integer idGame;
+    final private int CODE_READ_EXTERNAL_STORAGE_PERMISSION = 123;
+    private static final int REQUEST_SELECT_IMAGE = 201;
+    private ConstraintLayout constraintLayoutFormularioActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +79,9 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
 
         // Cargamos el presentador
         presenter = new FormularioPresenter(this);
+
+        // Recuperamos el Layout donde mostrar el Snackbar con las notificaciones
+        constraintLayoutFormularioActivity = findViewById(R.id.formulario_ConstaintLayout);
 
         initializeWidgets();
         initializeWidgetsListeners();
@@ -158,6 +180,7 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
 
     @Override
     public void initializeWidgets() {
+        caratulaImageView = findViewById(R.id.formulario_caratulaImageView);
         subirImagenButton = findViewById(R.id.formulario_subirImagenButton);
         tituloTextInputEditText = findViewById(R.id.formulario_tituloTextInputEditText);
         tituloTextInputLayout = findViewById(R.id.formulario_tituloTextInputLayout);
@@ -186,6 +209,14 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         presenter.addTextChangedListener(notaTextInputEditText, notaTextInputLayout, false, true);
         presenter.cargarDesplegable(); // loadSpinner()
         presenter.addTextChangedListener(fechaTextInputEditText, fechaTextInputLayout, true, false);
+
+        subirImagenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onclickButtonUploadImage(myContext);
+            }
+        });
+
     }
 
     @Override
@@ -253,6 +284,7 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         });
     }
 
+    @Override
     public int getGameIDFromRV() {
         // Recibo parametro desde el bundle
         // https://stackoverflow.com/a/3913720/10387022
@@ -262,6 +294,52 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         if(b != null)
             value = b.getInt("id_game");
         return value;
+    }
+
+    @Override
+    public void requestPermission() {
+        // Pedimos permisos al usuario
+        ActivityCompat.requestPermissions(FormularioActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, CODE_READ_EXTERNAL_STORAGE_PERMISSION);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case CODE_READ_EXTERNAL_STORAGE_PERMISSION:
+                presenter.resultPermission(grantResults[0], myContext);
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
+    public void launchGallery(){
+        // Se le pide al sistema una imagen del dispositivo
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(intent, getResources().getString(R.string.choose_picture)),
+                REQUEST_SELECT_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case (REQUEST_SELECT_IMAGE):
+                Bitmap bmCaratula = presenter.manageRequestForImage(requestCode, resultCode, data, myContext);
+                if(!bmCaratula.equals(null)){
+                    // Se carga el Bitmap en el ImageView
+                    caratulaImageView.setImageBitmap(bmCaratula);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void showSnackbar(String msg) {
+        Snackbar.make(constraintLayoutFormularioActivity, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     /*******************************************/

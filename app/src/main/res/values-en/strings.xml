@@ -40,4 +40,6 @@
     <string name="complete_all_fields">Complete all fields</string>
     <string name="game_deleted">Game deleted</string>
     <string name="email_copied_clipboard">Email copied to clipboard</string>
+    <string name="choose_picture">Elegir imagen</string>
+    <string name="permissions_needed">Permissions needed to access gallery</string>
 </resources>

@@ -1,12 +1,28 @@
 package com.gmail.jesusdc99.crudproject.presenters;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import androidx.core.content.ContextCompat;
+
+import com.gmail.jesusdc99.crudproject.R;
 import com.gmail.jesusdc99.crudproject.interfaces.FormularioInterface;
 import com.gmail.jesusdc99.crudproject.utils.Utils;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class FormularioPresenter implements FormularioInterface.Presenter {
 
@@ -20,6 +36,9 @@ public class FormularioPresenter implements FormularioInterface.Presenter {
     public void onClickGuardar() {
         if(view.isValidForm()) {
             view.launchListado();
+        }
+        else {
+            view.showSnackbar("Completa todos los campos");
         }
     }
 
@@ -74,5 +93,58 @@ public class FormularioPresenter implements FormularioInterface.Presenter {
             @Override
             public void afterTextChanged(Editable s) { }
         });
+    }
+
+    @Override
+    public void onclickButtonUploadImage(Context myContext) {
+        int readPermission = ContextCompat.checkSelfPermission(myContext, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (readPermission != PackageManager.PERMISSION_GRANTED) {
+            view.requestPermission();
+        }
+        else{
+            view.launchGallery();
+        }
+    }
+
+    @Override
+    public void resultPermission(int result, Context context) {
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            // Permiso aceptado
+            Log.d("TEST/", "Permiso aceptado");
+            view.launchGallery();
+        } else {
+            // Permiso rechazado
+            Log.d("TEST/", "Permiso rechazado");
+            view.showSnackbar(context.getString(R.string.permissions_needed));
+        }
+    }
+
+    @Override
+    public Bitmap manageRequestForImage(int requestCode, int resultCode, Intent data, Context context) {
+        Bitmap bmpCompressed = null;
+        if (resultCode == Activity.RESULT_OK) {
+            // Se carga la imagen desde un objeto Bitmap
+            Uri selectedImage = data.getData();
+            String selectedPath = selectedImage.getPath();
+
+            if (selectedPath != null) {
+                // Se leen los bytes de la imagen
+                InputStream imageStream = null;
+                try {
+                    imageStream = context.getContentResolver().openInputStream(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                // Se transformam los bytes de la imagen a un Bitmap
+                Bitmap bmp = BitmapFactory.decodeStream(imageStream);
+
+                // Comprimo la imagen bajandole la resolucion
+                // https://stackoverflow.com/a/28425042/10387022
+                int nh = (int) ( bmp.getHeight() * (180.0 / bmp.getWidth()) );
+                bmpCompressed = Bitmap.createScaledBitmap(bmp, 180, nh, true);
+            }
+        }
+        return bmpCompressed;
     }
 }
