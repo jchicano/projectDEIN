@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.gmail.jesusdc99.crudproject.R;
 import com.gmail.jesusdc99.crudproject.interfaces.ListadoInterface;
 import com.gmail.jesusdc99.crudproject.models.Game;
+import com.gmail.jesusdc99.crudproject.models.GameModel;
 import com.gmail.jesusdc99.crudproject.presenters.ListadoPresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -22,19 +23,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ListadoActivity extends AppCompatActivity implements ListadoInterface.View {
 
     private static final String TAG = "APPCRUD/Listado";
     private ListadoInterface.Presenter presenter;
-    private Context myContext;
+    private static Context myContext;
     private FloatingActionButton addFloatingActionButton;
     private RecyclerView listadoRecyclerView;
     private GameAdapter adaptador;
     private ArrayList<Game> gamesList;
+    private TextView contadorTextView;
+    private final static int BUSCAR = 0;
+    private String[] filterParams = {"%","%","%"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
         // Cargamos el presentador
         presenter = new ListadoPresenter(this);
+
+        presenter.initializeDatabase();
 
         initializeWidgets();
         initializeWidgetsListeners();
@@ -77,8 +85,14 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     @Override
     public void launchBuscar() {
         Log.d(TAG, "Lanzando buscar...");
-        Intent intent = new Intent(ListadoActivity.this, BuscarActivity.class); // Comunicamos las 2 actividades
-        startActivity(intent);
+        //Intent intent = new Intent(ListadoActivity.this, BuscarActivity.class); // Comunicamos las 2 actividades
+        //startActivity(intent);
+
+        // http://www.proyectosimio.com/es/programacion-android-startactivityforresult-lanzar-una-actividad-para-recibir-un-resultado/
+        Intent i = new Intent(this, BuscarActivity.class);
+        // Iniciamos la segunda actividad, y le indicamos que la iniciamos
+        // para rellenar el nombre:
+        startActivityForResult(i, BUSCAR);
     }
 
     @Override
@@ -86,6 +100,32 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         Log.d(TAG, "Lanzando about...");
         Intent intent = new Intent(ListadoActivity.this, AboutActivity.class); // Comunicamos las 2 actividades
         startActivity(intent);
+    }
+
+    // Recuperamos datos de BuscarActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
+        if (resultCode == RESULT_CANCELED) {
+            // Si es así mostramos mensaje de cancelado por pantalla.
+            Toast.makeText(this, "Resultado cancelado", Toast.LENGTH_SHORT).show();
+        } else {
+            // De lo contrario, recogemos el resultado de la segunda actividad.
+            String resultado = data.getExtras().getString("RESULTADO");
+            // Y tratamos el resultado en función de si se lanzó para rellenar el
+            // nombre o el apellido.
+            switch (requestCode) {
+                case BUSCAR:
+                    //etNombre.setText(resultado);
+                    Log.d(TAG, "Aplicando filtro a la lista...");
+                    Toast.makeText(this, resultado+"", Toast.LENGTH_SHORT).show();
+                    filterParams = resultado.split(";;;"); // Divido el string por los caracteres que he concatenado
+                    Log.d(TAG, "Longitud del array: "+filterParams.length);
+                    this.getGamesListWithFilter(filterParams);
+                    break;
+            }
+        }
     }
 
     // Elegimos que hacer segun que boton del toolbar se ha pulsado
@@ -118,7 +158,14 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     public void initializeWidgets() {
         addFloatingActionButton = findViewById(R.id.listado_listadoFB);
         listadoRecyclerView = findViewById(R.id.listado_listadoRecyclerView);
+        this.contadorTextView = findViewById(R.id.listado_contadorTextView);
+        //this.getGamesList();
+        this.getGamesListWithFilter(filterParams);
+    }
 
+   /* @Override
+    public void getGamesList() {
+        gamesList = null;
         // Crea el Adaptador con los datos de la lista anterior
         gamesList = presenter.getAllGames();
         adaptador = new GameAdapter(gamesList);
@@ -131,6 +178,27 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
         // Relaciono la accion swipe al RV
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listadoRecyclerView);
+    }*/
+
+    @Override
+    public void getGamesListWithFilter(String[] params) {
+        gamesList = null;
+        // Crea el Adaptador con los datos de la lista anterior
+        gamesList = presenter.getGamesByCriteria(params[0], params[1], params[2]);
+
+        adaptador = new GameAdapter(gamesList);
+
+        this.contadorTextView.setText(adaptador.getItemCount() + " " + getResources().getString(R.string.results_found));
+
+        // Asocia el Adaptador al RecyclerView
+        listadoRecyclerView.setAdapter(adaptador);
+
+        // Muestra el RecyclerView en vertical
+        listadoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Relaciono la accion swipe al RV
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listadoRecyclerView);
+        this.initializeWidgetsListeners();
     }
 
     @Override
@@ -178,12 +246,12 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         }
 
         @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { //TODO llamar al presentador, me lo ha puesto como mal
             int longitud = gamesList.size();
             gamesList.remove(viewHolder.getAdapterPosition());
             adaptador.notifyDataSetChanged();
-            if(gamesList.size() < longitud) Toast.makeText(myContext, "Juego eliminado", Toast.LENGTH_SHORT).show();
-            else Toast.makeText(myContext, "Error al eliminar juego", Toast.LENGTH_SHORT).show();
+            if(gamesList.size() < longitud) Toast.makeText(myContext, getString(R.string.game_deleted), Toast.LENGTH_SHORT).show();
+            else Toast.makeText(myContext, getString(R.string.game_deleted_error), Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -204,6 +272,8 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
     protected void onResume(){
         super.onResume();
         Log.d(TAG,"Ejecutando onResume...");
+        //this.getGamesList();
+        this.getGamesListWithFilter(filterParams);
     }
 
     @Override

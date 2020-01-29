@@ -9,11 +9,11 @@ import java.util.ArrayList;
 public class ListadoPresenter implements ListadoInterface.Presenter {
 
     private ListadoInterface.View view;
-    private GameModel game;
+    private GameModel model;
 
     public ListadoPresenter(ListadoInterface.View view) {
         this.view = view;
-        this.game = new GameModel();
+        this.model = GameModel.getInstance();
     }
 
     @Override
@@ -31,13 +31,23 @@ public class ListadoPresenter implements ListadoInterface.Presenter {
         view.launchBuscar();
     }
 
-    @Override
+    /*@Override
     public ArrayList<Game> getAllGames() {
-        return game.getAllGames();
+        return model.getAllGames();
+    }*/
+
+    @Override
+    public ArrayList<Game> getGamesByCriteria(String title, String platform, String date) {
+        return model.getGamesByCriteria(title, platform, date);
     }
 
     @Override
     public void onClickRecyclerView(int id) {
         view.launchForm(id);
+    }
+
+    @Override
+    public void initializeDatabase() {
+        model.initDB();
     }
 }

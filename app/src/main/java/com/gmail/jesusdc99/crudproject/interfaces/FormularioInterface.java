@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import androidx.core.content.ContextCompat;
 
+import com.gmail.jesusdc99.crudproject.models.Game;
 import com.google.android.material.textfield.TextInputLayout;
 
 public interface FormularioInterface {
@@ -22,10 +23,12 @@ public interface FormularioInterface {
         void requestPermission();
         void launchGallery();
         void showSnackbar(String msg);
+        void closeActivity();
+        void fillFormInputWithReceivedData();
     }
 
     interface Presenter {
-        void onClickGuardar();
+        void onClickGuardar(Game game, Context context);
         void onClickEliminar();
         void cargarDesplegable();
         void addTextChangedListener(EditText input, final TextInputLayout layout, final boolean validarFecha, final boolean validarNota);

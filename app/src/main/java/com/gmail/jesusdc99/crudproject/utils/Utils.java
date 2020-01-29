@@ -47,18 +47,21 @@ public class Utils {
     }
 
     public static boolean validateDate(CharSequence date){
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        if(!date.equals("")){
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-        // Input to be parsed should strictly follow the defined date format above.
-        format.setLenient(false);
+            // Input to be parsed should strictly follow the defined date format above.
+            format.setLenient(false);
 
-        try {
-            format.parse(date.toString());
-        } catch (ParseException e) {
-            Log.d(TAG, "Fecha " + date + " no valida ");
-            return false;
+            try {
+                format.parse(date.toString());
+            } catch (ParseException e) {
+                Log.d(TAG, "Fecha " + date + " no valida ");
+                return false;
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean validateNota(CharSequence nota) {

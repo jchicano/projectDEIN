@@ -18,6 +18,8 @@ import androidx.core.content.ContextCompat;
 
 import com.gmail.jesusdc99.crudproject.R;
 import com.gmail.jesusdc99.crudproject.interfaces.FormularioInterface;
+import com.gmail.jesusdc99.crudproject.models.Game;
+import com.gmail.jesusdc99.crudproject.models.GameModel;
 import com.gmail.jesusdc99.crudproject.utils.Utils;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -27,18 +29,22 @@ import java.io.InputStream;
 public class FormularioPresenter implements FormularioInterface.Presenter {
 
     private FormularioInterface.View view;
+    private GameModel model;
 
     public FormularioPresenter(FormularioInterface.View view) {
         this.view = view;
+        model = GameModel.getInstance();
     }
 
     @Override
-    public void onClickGuardar() {
+    public void onClickGuardar(Game game, Context context) {
         if(view.isValidForm()) {
+        //if(true) {
+            model.addNew(game);
             view.launchListado();
         }
         else {
-            view.showSnackbar("Completa todos los campos");
+            view.showSnackbar(context.getString(R.string.complete_all_fields));
         }
     }
 

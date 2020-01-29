@@ -1,8 +1,10 @@
 package com.gmail.jesusdc99.crudproject.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import com.gmail.jesusdc99.crudproject.interfaces.BuscarInterface;
+import com.gmail.jesusdc99.crudproject.models.GameModel;
 import com.gmail.jesusdc99.crudproject.presenters.BuscarPresenter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +20,7 @@ import com.gmail.jesusdc99.crudproject.utils.Utils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BuscarActivity extends AppCompatActivity implements BuscarInterface.View {
 
@@ -67,20 +70,54 @@ public class BuscarActivity extends AppCompatActivity implements BuscarInterface
         // Click en boton buscar ahora
         buscarAhoraButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(myContext, "Búsqueda realizada", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(myContext, "Búsqueda realizada", Toast.LENGTH_SHORT).show();
+                //finish();
+                // Si el EditText no está vacío recogemos el resultado.
+                // Guardamos el texto del EditText en un String.
+                String tituloSafe = "%";
+                String fechaSafe = "%";
+                if(tituloTextInputEditText.getText().length() != 0) {
+                    tituloSafe = tituloTextInputEditText.getText().toString();
+                    Log.d(TAG, "=================");
+                    Log.d(TAG, "Titulo no esta vacio");
+                }
+                try {
+                    if(!fechaLanzamientoTextInputEditText.getText().equals("")) {
+                        fechaSafe = fechaLanzamientoTextInputEditText.getText().toString();
+                    }
+                }
+                catch (Exception e) {
+                    //Log.d(TAG, e.toString());
+                    Log.d(TAG, "El campo fecha esta vacio");
+                }
+
+                String resultado = tituloSafe+";;;"+plataformaSpinner.getSelectedItem().toString()+";;;"+fechaSafe;
+                List<String> arr = new ArrayList<String>();
+                arr.add(resultado);
+                // Recogemos el intent que ha llamado a esta actividad.
+                Intent i = getIntent();
+                // Le metemos el resultado que queremos mandar a la
+                // actividad principal.
+                i.putExtra("RESULTADO", resultado);
+                // Establecemos el resultado, y volvemos a la actividad
+                // principal. La variable que introducimos en primer lugar
+                // "RESULT_OK" es de la propia actividad, no tenemos que
+                // declararla nosotros.
+                setResult(RESULT_OK, i);
+
+                // Finalizamos la Activity para volver a la anterior
                 finish();
             }
+                    // Si no tenía nada escrito el EditText lo avisamos.
+                    //Toast.makeText(myContext, "No se ha introducido nada en el campo de texto", Toast.LENGTH_SHORT).show();
+
         });
     }
 
     @Override
     public void loadSpinner(){
         // Definicion de la lista de opciones
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("PC");
-        items.add("PS4");
-        items.add("Xbox One");
-        items.add("Switch");
+        ArrayList<String> items = GameModel.getPlatformsList(true);
 
         // Definicion del Adaptador que contiene la lista de opciones
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);

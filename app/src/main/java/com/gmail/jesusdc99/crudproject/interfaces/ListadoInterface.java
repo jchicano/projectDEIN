@@ -14,6 +14,8 @@ public interface ListadoInterface {
         void initializeWidgets();
         void initializeWidgetsListeners();
         void initializeFloatingActionButton();
+        //void getGamesList();
+        void getGamesListWithFilter(String[] params);
     }
 
     // Metodos del presentador
@@ -21,8 +23,10 @@ public interface ListadoInterface {
         void onClickAdd();
         void onClickSobreAppCRUD();
         void onClickBuscar();
-        ArrayList<Game> getAllGames();
+        //ArrayList<Game> getAllGames();
         void onClickRecyclerView(int id);
+        void initializeDatabase();
+        ArrayList<Game> getGamesByCriteria(String title, String platform, String date);
     }
 
 }

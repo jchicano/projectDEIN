@@ -42,4 +42,7 @@
     <string name="email_copied_clipboard">Email copied to clipboard</string>
     <string name="choose_picture">Elegir imagen</string>
     <string name="permissions_needed">Permissions needed to access gallery</string>
+    <string name="obligatory_field">Obligatory field</string>
+    <string name="results_found">results found</string>
+    <string name="game_deleted_error">An error occurred deleting the game</string>
 </resources>

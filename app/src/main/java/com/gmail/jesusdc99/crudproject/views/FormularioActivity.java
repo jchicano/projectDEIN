@@ -1,33 +1,28 @@
 package com.gmail.jesusdc99.crudproject.views;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import com.gmail.jesusdc99.crudproject.R;
 import com.gmail.jesusdc99.crudproject.interfaces.FormularioInterface;
+import com.gmail.jesusdc99.crudproject.models.Game;
+import com.gmail.jesusdc99.crudproject.models.GameModel;
 import com.gmail.jesusdc99.crudproject.presenters.FormularioPresenter;
 import com.gmail.jesusdc99.crudproject.utils.Utils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -40,12 +35,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class FormularioActivity extends AppCompatActivity implements FormularioInterface.View {
@@ -58,6 +51,7 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
     private ImageView caratulaImageView;
     private ArrayAdapter<String> adapter;
     private Spinner plataformaSpinner;
+    private Switch nuevoSwitch;
     private Context myContext;
     private Integer idGame;
     final private int CODE_READ_EXTERNAL_STORAGE_PERMISSION = 123;
@@ -85,17 +79,11 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
 
         initializeWidgets();
         initializeWidgetsListeners();
+        fillFormInputWithReceivedData();
 
         // Oculto teclado
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(tituloTextInputEditText.getWindowToken(), 0);
-
-        idGame = getGameIDFromRV();
-        Log.d(TAG, "ID del juego recibido: " + idGame);
-
-        // Codigo temporal para comprobar el ID recibido
-        TextView temporalTV = findViewById(R.id.formulario_IDTemporalTextView);
-        temporalTV.setText("ID del juego: " + idGame);
     }
 
     // Para añadir el boton de guardar en el toolbar lo inflamos
@@ -110,16 +98,15 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
     // Metodo que lanza la actividad listado, se llama desde onClickGuardar
     @Override
     public void launchListado() {
-        Snackbar.make(findViewById(android.R.id.content), R.string.game_saved, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content), myContext.getResources().getString(R.string.game_saved), Snackbar.LENGTH_LONG).show();
         finish();
     }
 
     @Override
     public boolean isValidForm() {
-        if(tituloTextInputLayout.getError() == "" && desarrolladorTextInputLayout.getError() == "" && distribuidorTextInputLayout.getError() == "" && notaTextInputLayout.getError() == "" && fechaTextInputLayout.getError() == "") {
+        if(tituloTextInputLayout.getError() == null && desarrolladorTextInputLayout.getError() == null && distribuidorTextInputLayout.getError() == null && notaTextInputLayout.getError() == null && fechaTextInputLayout.getError() == null) {
             return true;
         }
-        Snackbar.make(findViewById(android.R.id.content), R.string.complete_all_fields, Snackbar.LENGTH_LONG).show();
         return false;
     }
 
@@ -167,12 +154,31 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         switch (item.getItemId()) {
             case R.id.formulario_action_save_game: // Cuando se pulsa el boton guardar
                 Log.d(TAG, "Pulsando boton guardar juego...");
-                presenter.onClickGuardar();
+                Game g = new Game();
+                g.setTitle(tituloTextInputEditText.getText().toString());
+                g.setPlatform(plataformaSpinner.getSelectedItem().toString());
+                g.setDeveloper(desarrolladorTextInputEditText.getText().toString());
+                g.setPublisher(distribuidorTextInputEditText.getText().toString());
+                g.setReleaseDate(fechaTextInputEditText.getText().toString());
+                g.setRating(notaTextInputEditText.getText().toString());
+                // Convierto el BitMap a Base64
+                try{
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    ((BitmapDrawable) caratulaImageView.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream .toByteArray();
+                    String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    g.setImage(encoded);
+                }
+                catch (Exception e) {
+                    Log.d(TAG, "No hay imagen, seleccionando una por defecto...");
+                }
+                presenter.onClickGuardar(g, myContext);
                 return true;
-            case R.id.formulario_action_delete_game: // Cuando se pulsa el boton eliminar
+                // TODO comentado porque lo pide
+            /*case R.id.formulario_action_delete_game: // Cuando se pulsa el boton eliminar
                 Log.d(TAG, "Pulsando boton eliminar juego...");
                 presenter.onClickEliminar();
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -193,6 +199,7 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         fechaTextInputEditText = findViewById(R.id.formulario_fechaLanzamientoTextInputEditText);
         fechaTextInputLayout = findViewById(R.id.formulario_fechaLanzamientoTextInputLayout);
         plataformaSpinner = findViewById(R.id.formulario_plataformaSpinner);
+        nuevoSwitch = findViewById(R.id.formulario_nuevoSwitch);
 
         subirImagenButton = findViewById(R.id.formulario_subirImagenButton);
         addPlataformaButton = findViewById(R.id.formulario_addPlataformaButton);
@@ -217,16 +224,22 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
             }
         });
 
+        this.tituloTextInputLayout.setError(myContext.getResources().getString(R.string.obligatory_field));
+        this.tituloTextInputLayout.setErrorEnabled(true);
+        this.desarrolladorTextInputLayout.setError(myContext.getResources().getString(R.string.obligatory_field));
+        this.desarrolladorTextInputLayout.setErrorEnabled(true);
+        this.distribuidorTextInputLayout.setError(myContext.getResources().getString(R.string.obligatory_field));
+        this.distribuidorTextInputLayout.setErrorEnabled(true);
+        this.notaTextInputLayout.setError(myContext.getResources().getString(R.string.obligatory_field));
+        this.notaTextInputLayout.setErrorEnabled(true);
+        this.fechaTextInputLayout.setError(myContext.getResources().getString(R.string.obligatory_field));
+        this.fechaTextInputLayout.setErrorEnabled(true);
     }
 
     @Override
     public void loadSpinner(){
         // Definicion de la lista de opciones
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("PC");
-        items.add("PS4");
-        items.add("Xbox One");
-        items.add("Switch");
+        ArrayList<String> items = GameModel.getPlatformsList(false);
 
         // Definicion del Adaptador que contiene la lista de opciones
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
@@ -296,6 +309,39 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         return value;
     }
 
+    // TODO por aqui estoy en el form
+    @Override
+    public void fillFormInputWithReceivedData() {
+
+        //////////////
+        idGame = getGameIDFromRV();
+        Log.d(TAG, "ID del juego recibido: " + idGame);
+
+        Game juego = GameModel.getInstance().getGameById(idGame);
+        tituloTextInputEditText.setText(juego.getTitle());
+        desarrolladorTextInputEditText.setText(juego.getDeveloper());
+        distribuidorTextInputEditText.setText(juego.getPublisher());
+        notaTextInputEditText.setText(juego.getRating());
+        // TODO cambiar spinner sp.setText(juego.getTitle());
+        int spinnerPosition = adapter.getPosition(juego.getPlatform());
+        plataformaSpinner.setSelection(spinnerPosition);
+        //
+        fechaTextInputEditText.setText(juego.getreleaseDate());
+        nuevoSwitch.setChecked(juego.getNuevo());
+        //
+        if(juego.getImage() != null) {
+            byte[] decodedString = Base64.decode(juego.getImage(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            caratulaImageView.setImageBitmap(decodedByte);
+        }
+
+        // Codigo temporal para comprobar el ID recibido
+        TextView temporalTV = findViewById(R.id.formulario_IDTemporalTextView);
+        temporalTV.setText("ID del juego: " + idGame);
+        //////////////
+
+    }
+
     @Override
     public void requestPermission() {
         // Pedimos permisos al usuario
@@ -335,6 +381,11 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
                 }
                 break;
         }
+    }
+
+    @Override
+    public void closeActivity() {
+        finish();
     }
 
     @Override
