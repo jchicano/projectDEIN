@@ -197,7 +197,7 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         listadoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Relaciono la accion swipe al RV
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listadoRecyclerView);
+        //new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listadoRecyclerView);
         this.initializeWidgetsListeners();
     }
 
@@ -239,21 +239,21 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
 
     // Swipe para el RV
     // https://www.youtube.com/watch?v=M1XEqqo6Ktg
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    /*ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
         }
 
         @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { //TODO llamar al presentador, me lo ha puesto como mal
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int longitud = gamesList.size();
             gamesList.remove(viewHolder.getAdapterPosition());
             adaptador.notifyDataSetChanged();
             if(gamesList.size() < longitud) Toast.makeText(myContext, getString(R.string.game_deleted), Toast.LENGTH_SHORT).show();
             else Toast.makeText(myContext, getString(R.string.game_deleted_error), Toast.LENGTH_SHORT).show();
         }
-    };
+    };*/
 
     /*******************************************/
     @Override

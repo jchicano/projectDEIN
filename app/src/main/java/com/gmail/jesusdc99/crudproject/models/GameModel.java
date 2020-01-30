@@ -68,7 +68,7 @@ public class GameModel extends SQLiteOpenHelper {
                     "developer TEXT," +
                     "publisher TEXT," +
                     "releasedate TEXT," +
-                    "rating INTEGER," +
+                    "rating TEXT," +
                     "nuevo TEXT," +
                     "image TEXT" +
                     ")";
@@ -185,6 +185,7 @@ public class GameModel extends SQLiteOpenHelper {
             values.put("platform", game.getPlatform());
             values.put("developer", game.getDeveloper());
             values.put("publisher", game.getPublisher());
+            values.put("rating", game.getRating());
             values.put("releasedate", game.getreleaseDate());
             values.put("nuevo", game.getNuevo());
             values.put("image", game.getImage());
@@ -276,6 +277,43 @@ public class GameModel extends SQLiteOpenHelper {
         }
         db.close();
         return g;
+    }
+
+    public boolean updateGame(Game game) {
+        SQLiteDatabase db = getWritableDatabase();
+        String where = "id=?";
+        String[] whereArgs = new String[] {String.valueOf(game.getId())};
+        db.beginTransaction();
+        try {
+            ContentValues values = new ContentValues();
+            values.put("title", game.getTitle());
+            values.put("platform", game.getPlatform());
+            values.put("developer", game.getDeveloper());
+            values.put("publisher", game.getPublisher());
+            values.put("releasedate", game.getreleaseDate());
+            values.put("rating", game.getRating());
+            values.put("nuevo", game.getNuevo());
+            values.put("image", game.getImage());
+
+            db.update("Game", values, where, whereArgs);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to add post to database");
+            return false;
+        } finally {
+            db.endTransaction();
+            db.close();
+            return true;
+        }
+    }
+
+    public boolean deleteGame(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String whereClause = "id=?";
+        String[] whereArgs = new String[] { String.valueOf(id) };
+
+        return db.delete("Game", whereClause, whereArgs) > 0;
     }
 
     private void insertRecordOnBoot(SQLiteDatabase db, Game game){

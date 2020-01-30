@@ -35,6 +35,7 @@ public interface FormularioInterface {
         void onclickButtonUploadImage(Context contextCompat);
         void resultPermission(int result, Context context);
         Bitmap manageRequestForImage(int requestCode, int resultCode, Intent data, Context context);
+        boolean deleteGame(int id);
     }
 
 }

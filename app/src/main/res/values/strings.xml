@@ -48,4 +48,6 @@
     <string name="obligatory_field">Campo obligatorio</string>
     <string name="results_found">resultados encontrados</string>
     <string name="game_deleted_error">Error al eliminar el juego</string>
+    <string name="game_updated">Juego actualizado</string>
+    <string name="game_updated_error">Error al actualizar juego</string>
 </resources>

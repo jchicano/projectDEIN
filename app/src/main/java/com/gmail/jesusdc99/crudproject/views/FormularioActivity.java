@@ -132,8 +132,14 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
             .setPositiveButton(getResources().getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogBox, int id) {
-                            Toast.makeText(myContext, R.string.game_deleted, Toast.LENGTH_SHORT).show();
-                            launchListado();
+                            if(presenter.deleteGame(idGame)){
+                                Toast.makeText(myContext, R.string.game_deleted, Toast.LENGTH_SHORT).show();
+                                launchListado();
+                            }
+                            else {
+                                Toast.makeText(myContext, R.string.game_deleted_error, Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     })
             // Boton Cancelar
@@ -155,6 +161,7 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
             case R.id.formulario_action_save_game: // Cuando se pulsa el boton guardar
                 Log.d(TAG, "Pulsando boton guardar juego...");
                 Game g = new Game();
+                g.setId(idGame);
                 g.setTitle(tituloTextInputEditText.getText().toString());
                 g.setPlatform(plataformaSpinner.getSelectedItem().toString());
                 g.setDeveloper(desarrolladorTextInputEditText.getText().toString());
@@ -174,11 +181,10 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
                 }
                 presenter.onClickGuardar(g, myContext);
                 return true;
-                // TODO comentado porque lo pide
-            /*case R.id.formulario_action_delete_game: // Cuando se pulsa el boton eliminar
+            case R.id.formulario_action_delete_game: // Cuando se pulsa el boton eliminar
                 Log.d(TAG, "Pulsando boton eliminar juego...");
                 presenter.onClickEliminar();
-                return true;*/
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -309,11 +315,8 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         return value;
     }
 
-    // TODO por aqui estoy en el form
     @Override
     public void fillFormInputWithReceivedData() {
-
-        //////////////
         idGame = getGameIDFromRV();
         Log.d(TAG, "ID del juego recibido: " + idGame);
 
@@ -322,24 +325,18 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
         desarrolladorTextInputEditText.setText(juego.getDeveloper());
         distribuidorTextInputEditText.setText(juego.getPublisher());
         notaTextInputEditText.setText(juego.getRating());
-        // TODO cambiar spinner sp.setText(juego.getTitle());
+
         int spinnerPosition = adapter.getPosition(juego.getPlatform());
         plataformaSpinner.setSelection(spinnerPosition);
-        //
+
         fechaTextInputEditText.setText(juego.getreleaseDate());
         nuevoSwitch.setChecked(juego.getNuevo());
-        //
+
         if(juego.getImage() != null) {
             byte[] decodedString = Base64.decode(juego.getImage(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             caratulaImageView.setImageBitmap(decodedByte);
         }
-
-        // Codigo temporal para comprobar el ID recibido
-        TextView temporalTV = findViewById(R.id.formulario_IDTemporalTextView);
-        temporalTV.setText("ID del juego: " + idGame);
-        //////////////
-
     }
 
     @Override

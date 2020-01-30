@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -39,8 +40,17 @@ public class FormularioPresenter implements FormularioInterface.Presenter {
     @Override
     public void onClickGuardar(Game game, Context context) {
         if(view.isValidForm()) {
-        //if(true) {
-            model.addNew(game);
+            if(game.getId() == -1){
+                model.addNew(game);
+            }
+            else {
+                if(model.updateGame(game)){
+                    Toast.makeText(context,context.getResources().getString(R.string.game_updated),Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(context,context.getResources().getString(R.string.game_updated_error),Toast.LENGTH_SHORT).show();
+                }
+            }
             view.launchListado();
         }
         else {
@@ -152,5 +162,10 @@ public class FormularioPresenter implements FormularioInterface.Presenter {
             }
         }
         return bmpCompressed;
+    }
+
+    @Override
+    public boolean deleteGame(int id) {
+        return model.deleteGame(id);
     }
 }

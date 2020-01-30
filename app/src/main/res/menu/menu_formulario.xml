@@ -10,10 +10,10 @@
         android:icon="@drawable/ic_save"
         android:title="@string/save"
         app:showAsAction="ifRoom"/>
-    <!--<item
+    <item
         android:id="@+id/formulario_action_delete_game"
         android:icon="@drawable/ic_delete"
         android:title="@string/delete"
-        app:showAsAction="ifRoom" />--> <!-- TODO comentado porque lo pide -->
+        app:showAsAction="ifRoom" />
 
 </menu>

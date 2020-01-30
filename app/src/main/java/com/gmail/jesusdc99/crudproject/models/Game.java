@@ -39,10 +39,14 @@ public class Game {
     }
 
     public boolean setTitle(String title) {
-        if(!title.equals("")){
-            this.title = title;
-            return true;
+        try{
+            if(!title.equals("")){
+                this.title = title;
+                return true;
+            }
+
         }
+        catch (Exception e) { }
         return false;
     }
 
@@ -51,10 +55,13 @@ public class Game {
     }
 
     public boolean setPlatform(String platform) {
-        if(!platform.equals("")){
-            this.platform = platform;
-            return true;
+        try{
+            if(!platform.equals("")){
+                this.platform = platform;
+                return true;
+            }
         }
+        catch (Exception e) { }
         return false;
     }
 
@@ -63,10 +70,13 @@ public class Game {
     }
 
     public boolean setDeveloper(String developer) {
-        if(!developer.equals("")){
-            this.developer = developer;
-            return true;
+        try{
+            if(!developer.equals("")){
+                this.developer = developer;
+                return true;
+            }
         }
+        catch (Exception e) { }
         return false;
     }
 
@@ -75,10 +85,13 @@ public class Game {
     }
 
     public boolean setPublisher(String publisher) {
-        if(!publisher.equals("")){
-            this.publisher = publisher;
-            return true;
+        try{
+            if(!publisher.equals("")){
+                this.publisher = publisher;
+                return true;
+            }
         }
+        catch (Exception e) { }
         return false;
     }
 
@@ -87,10 +100,13 @@ public class Game {
     }
 
     public boolean setRating(String rating) {
-        if(!rating.equals("") && Utils.validateNota(rating)){
-            this.rating = rating;
-            return true;
+        try{
+            if(!rating.equals("") && Utils.validateNota(rating)){
+                this.rating = rating;
+                return true;
+            }
         }
+        catch (Exception e) { }
         return false;
     }
 
@@ -99,10 +115,13 @@ public class Game {
     }
 
     public boolean setReleaseDate(String releaseDate) {
-        if(!releaseDate.equals("") && Utils.validateDate(releaseDate)){
-            this.releaseDate = releaseDate;
-            return true;
+        try{
+            if(!releaseDate.equals("") && Utils.validateDate(releaseDate)){
+                this.releaseDate = releaseDate;
+                return true;
+            }
         }
+        catch (Exception e) { }
         return false;
     }
 

@@ -45,4 +45,6 @@
     <string name="obligatory_field">Obligatory field</string>
     <string name="results_found">results found</string>
     <string name="game_deleted_error">An error occurred deleting the game</string>
+    <string name="game_updated">Game updated</string>
+    <string name="game_updated_error">An error occurred updating the game</string>
 </resources>
