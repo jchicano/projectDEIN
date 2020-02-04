@@ -298,7 +298,7 @@ public class GameModel extends SQLiteOpenHelper {
             db.update("Game", values, where, whereArgs);
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            Log.d(TAG, "Error while trying to add post to database");
+            Log.d(TAG, "Error al actualizar juego en la base de datos");
             return false;
         } finally {
             db.endTransaction();

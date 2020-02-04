@@ -92,8 +92,6 @@ public class BuscarActivity extends AppCompatActivity implements BuscarInterface
                 }
 
                 String resultado = tituloSafe+";;;"+plataformaSpinner.getSelectedItem().toString()+";;;"+fechaSafe;
-                List<String> arr = new ArrayList<String>();
-                arr.add(resultado);
                 // Recogemos el intent que ha llamado a esta actividad.
                 Intent i = getIntent();
                 // Le metemos el resultado que queremos mandar a la
