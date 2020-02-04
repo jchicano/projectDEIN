@@ -206,7 +206,7 @@ public class GameModel extends SQLiteOpenHelper {
     public ArrayList<Game> getAllGames() {
         ArrayList<Game> list = new ArrayList<Game>();
         try {
-            SQLiteDatabase db = getWritableDatabase();
+            SQLiteDatabase db = getReadableDatabase();
 
             String[] campos = new String[] {"id", "title", "platform", "image"};
             Cursor c = db.query("Game", campos, null, null, null, null, null);
@@ -255,7 +255,7 @@ public class GameModel extends SQLiteOpenHelper {
 
     public Game getGameById(int id) {
         Game g = new Game();
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         String[] args = new String[] {id+""};
 
