@@ -19,6 +19,7 @@ public class EntidadDatosTest {
         assertEquals(g.setPublisher("Pub"), true);
         assertEquals(g.setPublisher(""), false);
         assertEquals(g.setRating("4"), true);
+        assertEquals(g.setRating("Cuatro"), false);
         assertEquals(g.setRating(""), false);
         assertEquals(g.setReleaseDate("29/02/2020"), true);
         assertEquals(g.setReleaseDate("29/02/2021"), false);
