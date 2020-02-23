@@ -22,16 +22,32 @@ public class Game {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public boolean setId(Integer id) {
+        try{
+            if(!id.equals("")){
+                this.id = id;
+                return true;
+            }
+
+        }
+        catch (Exception e) { }
+        return false;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public boolean setImage(String image) {
+        try{
+            if(!image.equals("")){
+                this.image = image;
+                return true;
+            }
+
+        }
+        catch (Exception e) { }
+        return false;
     }
 
     public String getTitle() {
