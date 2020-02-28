@@ -102,6 +102,13 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
         startActivity(intent);
     }
 
+    @Override
+    public void launchAyuda() {
+        Intent intent = new Intent(getBaseContext(), AyudaActivity.class);
+        intent.putExtra("activity_from", "listado");
+        startActivity(intent);
+    }
+
     // Recuperamos datos de BuscarActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

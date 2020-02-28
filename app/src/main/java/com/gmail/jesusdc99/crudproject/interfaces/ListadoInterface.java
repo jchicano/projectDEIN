@@ -11,6 +11,7 @@ public interface ListadoInterface {
         void launchForm(int id);
         void launchAbout();
         void launchBuscar();
+        void launchAyuda();
         void initializeWidgets();
         void initializeWidgetsListeners();
         void initializeFloatingActionButton();

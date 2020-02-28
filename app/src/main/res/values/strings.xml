@@ -50,4 +50,6 @@
     <string name="game_deleted_error">Error al eliminar el juego</string>
     <string name="game_updated">Juego actualizado</string>
     <string name="game_updated_error">Error al actualizar juego</string>
+    <string name="help">Ayuda</string>
+    <string name="title_activity_ayuda">AyudaActivity</string>
 </resources>
