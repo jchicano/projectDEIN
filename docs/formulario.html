@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ayuda | Formulario</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+
+<body class="body-pink">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">App</span><span class="text-bold">CRUD</span>
+                        </a>
+                    </h1>
+
+                </div><!--//branding-->
+
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item active">Formulario</li>
+                </ol>
+
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><i class="icon fa fa-database"></i> Formulario</h1>
+                    <div class="meta"><i class="far fa-clock"></i> Última actualización: 29 Feb, 2020</div>
+                </div><!--//doc-header-->
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="interface-section" class="doc-section">
+                                <h2 class="section-title">Interfaz</h2>
+                                <div id="toolbar" class="section-block">
+                                    <h3 class="block-title">Toolbar</h3>
+                                    <div class="section-block">
+                                        <p>La barra de menú contiene una flecha hacia atrás que nos devolverá a la actividad <a href="listado.html">Listado</a>  sin realizar cambios. También cuenta con 2 botones que se utilizan para guardar el contenido del formulario actual y para eliminarlo (si estamos editando un elemento).
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-12 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_toolbar.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_toolbar.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Toolbar</h4>
+                                                    <p class="card-text">Botones del menú</p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_toolbar.png" target="_blank"><!--<i class="icon fa fa-search-plus"></i>--></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                    </div>
+                                    <h3 class="block-title">Cuerpo</h3>
+                                    <div class="section-block">
+                                        <p>Esta pantalla consta de una serie de campos que debemos rellenar si estamos creando un nuevo item, o bien modificar si lo estamos editando.
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-6 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_1png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_1.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Creación de un elemento (I)</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_1.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                        <div class="col-md-4 col-6 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_2.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_2.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Creación de un elemento (II)</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_2.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <p>Por otra parte, si estamos modificando algún registro proviniente de <a href="listado.html">Listado</a>, se nos rellenarán los campos con sus correspondientes datos.
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-6 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_3.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_3.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Modificación de un elemento (I)</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_3.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                        <div class="col-md-4 col-6 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_6.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_6.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Modificación de un elemento (II)</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_6.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <p>No obstante, esta vista también cuenta con elementos para introducir datos de una forma más fácil para el usuario, como pueden ser un campo desplegable y selector de fechas.
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-6 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_4.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_4.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Modificación de un elemento (I)</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_4.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                        <div class="col-md-4 col-6 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_5.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_5.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Modificación de un elemento (II)</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_5.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <p>Otras opciones disponibles son el guardado y la eliminación de un registro contra la base de datos.
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-12 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/sc_formulario_7.png" target="_blank"><img class="img-fluid" src="assets/images/sc_formulario_7.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Eliminación de un elemento (I)</h4>
+                                                    <p class="card-text">Cuadro de confirmación para controlar el borrado de un elemento</p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/sc_formulario_7.png" target="_blank"><i class="icon fa fa-search-plus"></i></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                                <div class="callout-block callout-danger">
+                                    <div class="icon-holder">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div><!--//icon-holder-->
+                                    <div class="content">
+                                        <h4 class="callout-title">Borrado de registros</h4>
+                                        <p>El borrado de un registro es <b>permanente e irreversible</b>, por lo que una vez se confirme no habrá forma de recuperar la información.</p>
+                                    </div><!--//content-->
+                                </div><!--//callout-block-->
+                            </section><!--//doc-section-->
+
+                            <section id="installation-section" class="doc-section">
+                                <h2 class="section-title">Contenido</h2>
+                                <div id="step1"  class="section-block">
+                                    <h3 class="block-title">Base de datos</h3>
+                                    <p>La disposición de esta pantalla se basa en el modelo de la base de datos SQLite que lleva incorporada, por lo que deberán existir los siguientes campos:
+                                    </p>
+                                    <ul>
+                                        <li>Imagen</li>
+                                        <li>Título</li>
+                                        <li>Desarrollador</li>
+                                        <li>Distribuidor</li>
+                                        <li>Nota</li>
+                                        <li>Plataforma</li>
+                                        <li>Fecha de lanzamiento</li>
+                                        <li>Nuevo</li>
+                                    </ul>
+                                    <p>El modelo resultante es el siguiente:
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-4 col-12 mb-3">
+                                            <div class="theme-card">
+                                                <a href="assets/images/diagram.png" target="_blank"><img class="img-fluid" src="assets/images/diagram.png" alt="screenshot" /></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Modelo Entidad-Relación</h4>
+                                                    <p class="card-text"></p>
+                                                </div><!--//card-block-->
+                                                <a class="mask" href="assets/images/diagram.png" target="_blank"><!--<i class="icon fa fa-search-plus"></i>--></a>
+                                            </div><!--//theme-card-->
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                </div><!--//doc-body-->
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+    </div><!--//page-wrapper-->
+
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
+        </div><!--//container-->
+    </footer><!--//footer-->
+
+
+    <!-- Main Javascript -->
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>
+
+</body>
+</html>
+
