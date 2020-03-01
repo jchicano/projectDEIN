@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/title_activity_ayuda"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -24,11 +26,19 @@
         android:id="@+id/include"
         layout="@layout/content_ayuda" />
 
-    <WebView
-        android:id="@+id/ayuda_webView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="675dp"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="center" />
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/ayuda_webView"
+            android:layout_width="match_parent"
+            android:layout_height="675dp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

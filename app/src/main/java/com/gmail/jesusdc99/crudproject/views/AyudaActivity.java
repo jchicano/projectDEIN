@@ -35,14 +35,17 @@ public class AyudaActivity extends AppCompatActivity {
         WebView webView = findViewById(R.id.ayuda_webView);
         webView.getSettings().setJavaScriptEnabled(true); // enable javascript
 
-        if(activity_from == "listado") {
-            webView.loadUrl("");
+        if(activity_from.equals("listado")) {
+            Log.d(TAG, "Abriendo ayuda de listado");
+            webView.loadUrl("https://jesusdc99.github.io/projectDEIN/listado.html");
         }
-        if(activity_from == "formulario") {
-
+        if(activity_from.equals("formulario")) {
+            Log.d(TAG, "Abriendo ayuda de formulario");
+            webView.loadUrl("https://jesusdc99.github.io/projectDEIN/formulario.html");
         }
-        if(activity_from == "buscar") {
-
+        if(activity_from.equals("buscar")) {
+            Log.d(TAG, "Abriendo ayuda de buscar");
+            webView.loadUrl("https://jesusdc99.github.io/projectDEIN/buscar.html");
         }
     }
 

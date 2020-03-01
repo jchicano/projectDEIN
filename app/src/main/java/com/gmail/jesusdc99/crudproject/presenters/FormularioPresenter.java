@@ -69,6 +69,9 @@ public class FormularioPresenter implements FormularioInterface.Presenter {
     }
 
     @Override
+    public void onClickAyuda() { view.launchAyuda(); }
+
+    @Override
     public void addTextChangedListener(EditText input, final TextInputLayout layout, final boolean validarFecha, final boolean validarNota) {
         input.addTextChangedListener(new TextWatcher() {
             @Override

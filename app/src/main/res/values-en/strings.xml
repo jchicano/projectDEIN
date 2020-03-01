@@ -48,4 +48,5 @@
     <string name="game_updated">Game updated</string>
     <string name="game_updated_error">An error occurred updating the game</string>
     <string name="help">Help</string>
+    <string name="title_activity_ayuda">Help</string>
 </resources>

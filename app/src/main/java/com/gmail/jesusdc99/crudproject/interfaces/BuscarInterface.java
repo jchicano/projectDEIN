@@ -7,11 +7,12 @@ public interface BuscarInterface {
         void initializeWidgets();
         void initializeWidgetsListeners();
         void loadSpinner();
+        void launchAyuda();
     }
 
     // Metodos del presentador
     interface Presenter {
-
+        void onClickAyuda();
     }
 
 }

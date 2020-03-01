@@ -24,6 +24,7 @@ public interface ListadoInterface {
         void onClickAdd();
         void onClickSobreAppCRUD();
         void onClickBuscar();
+        void onClickAyuda();
         //ArrayList<Game> getAllGames();
         void onClickRecyclerView(int id);
         void initializeDatabase();

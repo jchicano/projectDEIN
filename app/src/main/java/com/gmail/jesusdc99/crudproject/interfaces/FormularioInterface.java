@@ -18,6 +18,7 @@ public interface FormularioInterface {
         void initializeWidgetsListeners();
         void loadSpinner();
         void launchDeleteAlert();
+        void launchAyuda();
         boolean isValidForm();
         int getGameIDFromRV();
         void requestPermission();
@@ -31,6 +32,7 @@ public interface FormularioInterface {
         void onClickGuardar(Game game, Context context);
         void onClickEliminar();
         void cargarDesplegable();
+        void onClickAyuda();
         void addTextChangedListener(EditText input, final TextInputLayout layout, final boolean validarFecha, final boolean validarNota);
         void onclickButtonUploadImage(Context contextCompat);
         void resultPermission(int result, Context context);

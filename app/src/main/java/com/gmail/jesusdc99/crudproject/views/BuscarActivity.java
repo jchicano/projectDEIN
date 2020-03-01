@@ -9,6 +9,9 @@ import com.gmail.jesusdc99.crudproject.presenters.BuscarPresenter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -124,6 +127,35 @@ public class BuscarActivity extends AppCompatActivity implements BuscarInterface
         // Definicion del Spinner
         plataformaSpinner.setAdapter(adapter);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_buscar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void launchAyuda() {
+        Intent intent = new Intent(getBaseContext(), AyudaActivity.class);
+        intent.putExtra("activity_from", "buscar");
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.buscar_action_ayuda: //  Cuando se pulsa la opcion buscar
+                Log.d(TAG, "Pulsando opcion ayuda...");
+                presenter.onClickAyuda();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     /*******************************************/
     @Override

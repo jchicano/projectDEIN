@@ -31,6 +31,11 @@ public class ListadoPresenter implements ListadoInterface.Presenter {
         view.launchBuscar();
     }
 
+    @Override
+    public void onClickAyuda() {
+        view.launchAyuda();
+    }
+
     /*@Override
     public ArrayList<Game> getAllGames() {
         return model.getAllGames();

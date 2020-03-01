@@ -103,6 +103,13 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
     }
 
     @Override
+    public void launchAyuda() {
+        Intent intent = new Intent(getBaseContext(), AyudaActivity.class);
+        intent.putExtra("activity_from", "formulario");
+        startActivity(intent);
+    }
+
+    @Override
     public boolean isValidForm() {
         if(tituloTextInputLayout.getError() == null && desarrolladorTextInputLayout.getError() == null && distribuidorTextInputLayout.getError() == null && notaTextInputLayout.getError() == null && fechaTextInputLayout.getError() == null) {
             return true;
@@ -184,6 +191,10 @@ public class FormularioActivity extends AppCompatActivity implements FormularioI
             case R.id.formulario_action_delete_game: // Cuando se pulsa el boton eliminar
                 Log.d(TAG, "Pulsando boton eliminar juego...");
                 presenter.onClickEliminar();
+                return true;
+            case R.id.formulario_action_ayuda: //  Cuando se pulsa la opcion buscar
+                Log.d(TAG, "Pulsando opcion ayuda...");
+                presenter.onClickAyuda();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

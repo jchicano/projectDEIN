@@ -144,6 +144,10 @@ public class ListadoActivity extends AppCompatActivity implements ListadoInterfa
                 Log.d(TAG, "Pulsando opcion buscar...");
                 presenter.onClickBuscar();
                 return true;
+            case R.id.listado_action_ayuda: //  Cuando se pulsa la opcion buscar
+                Log.d(TAG, "Pulsando opcion ayuda...");
+                presenter.onClickAyuda();
+                return true;
             case R.id.listado_action_ordenar: // Cuando se pulsa la opcion ordenar
                 Log.d(TAG, "Pulsando opcion ordenar...");
                 Toast.makeText(myContext, "No implementado todavía", Toast.LENGTH_SHORT).show();
