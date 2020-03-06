@@ -28,7 +28,7 @@ wallabag is available on the Google Play Store and F-Droid.
         </p>
 -->
 
-<br><br><br>
+<br><br><br><br>
 
 ## Acerca de
 
