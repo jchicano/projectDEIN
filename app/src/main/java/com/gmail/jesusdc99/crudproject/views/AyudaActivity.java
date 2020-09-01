@@ -37,15 +37,15 @@ public class AyudaActivity extends AppCompatActivity {
 
         if(activity_from.equals("listado")) {
             Log.d(TAG, "Abriendo ayuda de listado");
-            webView.loadUrl("https://jesusdc99.github.io/projectDEIN/listado.html");
+            webView.loadUrl("https://jchicano.github.io/AppCRUD/listado.html");
         }
         if(activity_from.equals("formulario")) {
             Log.d(TAG, "Abriendo ayuda de formulario");
-            webView.loadUrl("https://jesusdc99.github.io/projectDEIN/formulario.html");
+            webView.loadUrl("https://jchicano.github.io/AppCRUD/formulario.html");
         }
         if(activity_from.equals("buscar")) {
             Log.d(TAG, "Abriendo ayuda de buscar");
-            webView.loadUrl("https://jesusdc99.github.io/projectDEIN/buscar.html");
+            webView.loadUrl("https://jchicano.github.io/AppCRUD/buscar.html");
         }
     }
 

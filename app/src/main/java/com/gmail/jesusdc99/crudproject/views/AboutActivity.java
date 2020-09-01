@@ -64,7 +64,7 @@ public class AboutActivity extends AppCompatActivity implements AboutInterface.V
         Toast.makeText(myContext, "Copiado", Toast.LENGTH_SHORT).show();*/
         // https://stackoverflow.com/a/4689397/10387022
         String feedback = getResources().getString(R.string.send_feedback);
-        String html = "<a href=\"mailto:ajchicano@iesfranciscodelosrios.es\">"+feedback+"</a>";
+        String html = "<a href=\"mailto:jesus.d.chicano@gmail.com\">"+feedback+"</a>";
         comentariosTextView.setText(Html.fromHtml(html));
         comentariosTextView.setMovementMethod(LinkMovementMethod.getInstance());
     }
