@@ -33,7 +33,7 @@ wallabag is available on the Google Play Store and F-Droid.
 ## Acerca de
 
 AppCRUD consiste en una simple aplicación para la gestión de productos, en este caso videojuegos.
-Para más información puede dirigirse a la [página de ayuda](https://jesusdc99.github.io/projectDEIN/) y leer la guía de usuario.
+Para más información puede dirigirse a la [página de ayuda](https://jchicano.github.io/AppCRUD/) y leer la guía de usuario.
 
 Esta aplicación fue originalmente creada por Jesús David Chicano Galindo y lanzada bajo la licencia GNU GPLv3.
 
